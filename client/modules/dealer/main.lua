@@ -7,13 +7,24 @@ end
 ---@param dealerIndex number
 ---@param data table
 local OpenDealerMenu = function(dealerIndex, data)
+    -- Buy Menu --
     local buyContextData = {};
     for index, value in pairs(data.buyPrices) do
         if Config.ContextType == 'ox' then
-            table.insert(buyContextData, {
-                title = Lang[index]..' - '..value..'$',
+            buyContextData[index] = {
+                title = Lang[value.item]..' - '..value.price..'$',
                 icon = 'fas fa-cannabis'
-            });
+            };
+        end
+    end
+    -- Sell Menu --
+    local sellContextData = {};
+    for index, value in pairs(data.sellPrices) do
+        if Config.ContextType == 'ox' then
+            sellContextData[index] = {
+                title = Lang[value.item]..' - '..value.price..'$',
+                icon = 'fas fa-cannabis'
+            };
         end
     end
     -- Context Handler --
@@ -35,6 +46,21 @@ local OpenDealerMenu = function(dealerIndex, data)
                             end
                         });
                         lib.showContext('king_drugs_dealer_buy_menu_'..dealerIndex);
+                    end
+                },
+                {
+                    title = 'Sell Drugs',
+                    icon = 'fas fa-shopping-cart',
+                    onSelect = function(args)
+                        lib.registerContext({
+                            id = 'king_drugs_dealer_sell_menu_'..dealerIndex,
+                            title = Lang.DealerSellContextHeader,
+                            options = sellContextData,
+                            onSelect = function()
+                                SellDrugs();
+                            end
+                        });
+                        lib.showContext('king_drugs_dealer_sell_menu_'..dealerIndex);
                     end
                 }
             }
@@ -77,39 +103,6 @@ local AddControl = function(data)
     
 end
 
----@param data table
----@return number
-local AddBlip = function(data)
-    local blip = AddBlipForCoord(data.coords.x, data.coords.y, data.coords.z);
-    SetBlipSprite(blip, data.blip.sprite);
-    SetBlipDisplay(blip, 4);
-    SetBlipScale(blip, data.blip.scale);
-    SetBlipColour(blip, data.blip.color);
-    SetBlipAsShortRange(blip, true);
-    BeginTextCommandSetBlipName('STRING');
-    AddTextComponentSubstringKeyboardDisplay(data.blip.label);
-    EndTextCommandSetBlipName(blip);
-    return blip
-end
-
----@param data table
----@return number
-local CreatePed = function(data)
-    local model = GetHashKey(data.ped.model);
-    lib.requestModel(model);
-    local ped = CreatePed(1, model, data.coords.x, data.coords.y, data.coords.z - 1, data.heading, true, true);
-    SetPedCombatAttributes(ped, 46, true);
-    SetPedFleeAttributes(ped, 0, false);
-    SetBlockingOfNonTemporaryEvents(ped, true);
-    SetEntityAsMissionEntity(ped, true, true);
-    SetEntityInvincible(ped, true);
-    FreezeEntityPosition(ped, true);
-    SetPedDiesWhenInjured(ped, false);
-    SetPedCanPlayAmbientAnims(ped, true);
-    SetPedCanRagdollFromPlayerImpact(ped, false);
-    return ped;
-end
-
 CreateThread(function()
     for index, value in pairs(Config.DealerLocations) do
         -- Interation --
@@ -120,6 +113,6 @@ CreateThread(function()
         end
         -- Ped Creation --
         if value.blip then value.blip.id = AddBlip(value); end
-        if value.ped then value.ped.id = CreatePed(value); end
+        if value.ped then value.ped.id = SpawnPed(value); end
     end
 end)

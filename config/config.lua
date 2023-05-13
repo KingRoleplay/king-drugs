@@ -15,16 +15,16 @@ Config.DealerLocations = {
         coords = vec3(-117.7423, 6348.8779, 31.4904),
         heading = 50.7063,
         buyPrices = { --! The prices of all the drugs
-            ['heroin'] = 5,
-            ['marijuana'] = 10,
-            ['meth'] = 25,
-            ['cocaine'] = 50
+            [1] = { item ='heroin', price = 8 },
+            [2] = { item = 'marijuana', price = 15 },
+            [3] = { item = 'meth', price = 35 },
+            [4] = { item = 'cocaine', price = 60 }
         },
         sellPrices = {
-            ['heroin'] = 8,
-            ['marijuana'] = 12,
-            ['meth'] = 30,
-            ['cocaine'] = 75
+            [1] = { item = 'heroin', price = 5 },
+            [2] = { item = 'marijuana', price = 10 },
+            [3] = { item = 'meth', price = 25 },
+            [4] = { item = 'cocaine', price = 50 }
         },
         target = {
             debug = false,

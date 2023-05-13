@@ -8,12 +8,14 @@ version '1.0.0'
 
 client_script {
     'client/main.lua',
-    'client/modules/*.lua'
+    'client/modules/*/main.lua',
+    'client/modules/*/*.lua'
 };
 
 server_script {
     'server/main.lua',
-    'server/modules/*.lua'
+    'server/modules/*/main.lua',
+    'server/modules/*/*.lua'
 };
 
 shared_script {
