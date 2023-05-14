@@ -1,7 +1,8 @@
 ---@param data table
 ---@return number
 AddBlip = function(data)
-    local blip = AddBlipForCoord(data.coords.x, data.coords.y, data.coords.z);
+    local coords = data.blip.coords or data.coords;
+    local blip = AddBlipForCoord(coords.x, coords.y, coords.z);
     SetBlipSprite(blip, data.blip.sprite);
     SetBlipDisplay(blip, 4);
     SetBlipScale(blip, data.blip.scale);
@@ -19,9 +20,12 @@ local ReqModel = function(model)
         model = GetHashKey(model);
     end
     -- ox_lib check --
-    if GetResourceState('ox_lib') ~= 'missing' then
+    local state = GetResourceState('ox_lib');
+    if state ~= 'missing' and state ~= 'stopped' then
+        print('ox_lib')
         lib.requestModel(model);
     else
+        print('not ox_lib')
         RequestModel(model);
         while not HasModelLoaded(model) do
             Wait(10);
@@ -34,7 +38,9 @@ end
 SpawnPed = function(data)
     local model = GetHashKey(data.ped.model);
     ReqModel(model);
-    local ped = CreatePed(1, model, data.coords.x, data.coords.y, data.coords.z - 1, data.heading, true, true);
+    local coords = data.ped.coords or data.coords;
+    local h = data.ped.heading or data.heading;
+    local ped = CreatePed(1, model, coords.x, coords.y, coords.z - 1, h, true, true);
     SetPedCombatAttributes(ped, 46, true);
     SetPedFleeAttributes(ped, 0, false);
     SetBlockingOfNonTemporaryEvents(ped, true);
