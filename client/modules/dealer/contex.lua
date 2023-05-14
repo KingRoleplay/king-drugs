@@ -9,12 +9,15 @@ local SellDrugs = function()
 end
 
 ---@param data table
----@return table
+---@return false | table buyContextData
+---@return false | table sellContextData
 local FormateDealerMenu = function(data)
-    local buyContextData, buyContextEnabled = nil, true;
-    if type(data.buyPrices) == 'table' then
-        buyContextData, buyContextEnabled = {}, false;
-        for index, value in pairs(data.buyPrices) do
+    local buyContextData = nil;
+    if type(data.buy) ~= 'table' then
+        buyContextData = false;
+    elseif type(data.buy) == 'table' then
+        buyContextData = {};
+        for index, value in pairs(data.buy) do
             if Config.ContextType == 'ox' then
                 buyContextData[index] = {
                     title = Lang[value.item]..' - '..value.price..'$',
@@ -24,10 +27,12 @@ local FormateDealerMenu = function(data)
         end
     end
     -- Sell Menu --
-    local sellContextData, sellContextEnabled = nil, true;
-    if type(data.buyPrices) == 'table' then
-        sellContextData, sellContextEnabled = {}, false;
-        for index, value in pairs(data.sellPrices) do
+    local sellContextData = nil;
+    if type(data.sell) ~= 'table' then
+        sellContextData = false;
+    elseif type(data.sell) == 'table' then
+        sellContextData = {};
+        for index, value in pairs(data.sell) do
             if Config.ContextType == 'ox' then
                 sellContextData[index] = {
                     title = Lang[value.item]..' - '..value.price..'$',
@@ -36,13 +41,13 @@ local FormateDealerMenu = function(data)
             end
         end
     end
-    return { enabled = { sell = sellContextEnabled, buy = buyContextEnabled }, data = { sell = sellContextData, buy = buyContextData } };
+    return buyContextData, sellContextData;
 end
 
 ---@param dealerIndex number
 ---@param data table
 OpenDealerMenu = function(dealerIndex, data)
-    local menuData = FormateDealerMenu(data);
+    local buyContextData, sellContextData = FormateDealerMenu(data.prices);
     if Config.ContextType == 'ox' then
         lib.registerContext({
             id = 'king_drugs_dealer_menu_'..dealerIndex,
@@ -51,12 +56,12 @@ OpenDealerMenu = function(dealerIndex, data)
                 {
                     title = 'Buy Drugs',
                     icon = 'fas fa-shopping-cart',
-                    onSelect = function(args)
+                    disabled = type(buyContextData) == 'boolean' and not buyContextData,
+                    onSelect = function()
                         lib.registerContext({
                             id = 'king_drugs_dealer_buy_menu_'..dealerIndex,
                             title = Lang.DealerBuyContextHeader,
-                            disabled = menuData.enabled.buy,
-                            options = menuData.data.buy,
+                            options = buyContextData,
                             onSelect = function()
                                 BuyDrugs();
                             end
@@ -67,12 +72,12 @@ OpenDealerMenu = function(dealerIndex, data)
                 {
                     title = 'Sell Drugs',
                     icon = 'fas fa-shopping-cart',
-                    onSelect = function(args)
+                    disabled = type(sellContextData) == 'boolean' and not sellContextData,
+                    onSelect = function()
                         lib.registerContext({
                             id = 'king_drugs_dealer_sell_menu_'..dealerIndex,
                             title = Lang.DealerSellContextHeader,
-                            disabled = menuData.enabled.sell,
-                            options = menuData.data.sell,
+                            options = sellContextData,
                             onSelect = function()
                                 SellDrugs();
                             end

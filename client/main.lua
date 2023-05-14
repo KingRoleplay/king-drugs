@@ -22,10 +22,8 @@ local ReqModel = function(model)
     -- ox_lib check --
     local state = GetResourceState('ox_lib');
     if state ~= 'missing' and state ~= 'stopped' then
-        print('ox_lib')
         lib.requestModel(model);
     else
-        print('not ox_lib')
         RequestModel(model);
         while not HasModelLoaded(model) do
             Wait(10);
