@@ -21,6 +21,7 @@ Config.DealerLocations = {
             size = vec3(1, 1, 2) -- vector3 for target number for control
         },
         prices = {
+            --TODO Add maximum amount of drugs to buy or sell
             buy = {
                 [1] = { item ='heroin', price = 8 },
                 [2] = { item = 'marijuana', price = 15 },

@@ -50,3 +50,19 @@ SpawnPed = function(data)
     SetPedCanRagdollFromPlayerImpact(ped, false);
     return ped;
 end
+
+local Lang = Config.Languages[Config.Language];
+
+---@param title string
+---@param msg string
+---@param type string
+---@param time number
+Notify = function(title, msg, type, time)
+    lib.notify({
+        title = title,
+        description = msg,
+        type = type,
+        duration = time
+    });
+end
+RegisterNetEvent('king-drugs:client:notify', Notify);
