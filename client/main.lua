@@ -111,7 +111,7 @@ AddTargetInteraction = function(targetLabel, icon, name, data, onSelect)
         targetData.options[1].distance = 1.5;
         targetData.options[1].onSelect = onSelect;
         exports[Config.TargetType]:addBoxZone(targetData);
-    elseif Config.TargetType == 'qtarget' then
+    elseif Config.TargetType == 'qtarget' or Config.TargetType == 'qb-target' then
         targetData.options[1].action = onSelect;
         exports[Config.TargetType]:AddBoxZone(targetLabel, data.coords, data.size[1], data.size[2], {
             name = targetLabel,
