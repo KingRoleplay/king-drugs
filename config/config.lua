@@ -2,6 +2,7 @@ Config = Config or {};
 
 -- Main Configuration --
 
+Config.Framework = 'qbcore'; -- qbcore or esx (ox_core soon)
 Config.Language = 'en'; -- en or bg
 Config.ZoneType = 'ox'; -- ox (ox_lib zones), poly (bt-polyzone) or distance (fivem)
 Config.ControlInteraction = 'ox'; -- ox, okokTextUI, customTextUI, 3DText

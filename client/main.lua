@@ -51,8 +51,6 @@ SpawnPed = function(data)
     return ped;
 end
 
-local Lang = Config.Languages[Config.Language];
-
 ---@param title string
 ---@param msg string
 ---@param type string
