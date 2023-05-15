@@ -58,11 +58,32 @@ local Lang = Config.Languages[Config.Language];
 ---@param type string
 ---@param time number
 Notify = function(title, msg, type, time)
-    lib.notify({
-        title = title,
-        description = msg,
-        type = type,
-        duration = time
-    });
+    if Config.Notifications == 'ox' then
+        lib.notify({
+            title = title,
+            description = msg,
+            type = type,
+            duration = time
+        });
+    elseif Config.Notifications == 'custom' then
+        CustomNotifications(title, msg, type, time)
+    else
+        CustomNotifications(title, msg, type, time);
+    end
 end
 RegisterNetEvent('king-drugs:client:notify', Notify);
+
+---@param action string
+---@param message string?
+TextUI = function(action, message)
+    local interaction = Config.ControlInteraction;
+    if interaction == 'ox' then
+        if action == 'show' then
+            lib.showTextUI(message);
+        elseif action == 'hide' then
+            lib.hideTextUI();
+        end
+    elseif interaction == 'custom' then
+        CustomTextUI(action, message);
+    end
+end
