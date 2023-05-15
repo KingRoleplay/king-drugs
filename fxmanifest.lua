@@ -25,5 +25,4 @@ shared_script {
 
 dependency {
     'ox_lib',
-    'ox_target'
 };
