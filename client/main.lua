@@ -91,7 +91,8 @@ end
 ---@param name string
 ---@param data table
 ---@param onSelect function
-AddTargetInteraction = function(targetLabel, icon, name, data, onSelect)
+---@param canInteact function?
+AddTargetInteraction = function(targetLabel, icon, name, data, onSelect, canInteact)
     local targetData = {
         options = {
             {
@@ -110,9 +111,15 @@ AddTargetInteraction = function(targetLabel, icon, name, data, onSelect)
         targetData.options[1].name = name;
         targetData.options[1].distance = 1.5;
         targetData.options[1].onSelect = onSelect;
+        if canInteact then
+            targetData.options[1].canInteract = canInteact;
+        end
         exports[Config.TargetType]:addBoxZone(targetData);
-    elseif Config.TargetType == 'qtarget' then
+    elseif Config.TargetType == 'qtarget' or Config.TargetType == 'qb-target' then
         targetData.options[1].action = onSelect;
+        if canInteact then
+            targetData.options[1].canInteract = canInteact;
+        end
         exports[Config.TargetType]:AddBoxZone(targetLabel, data.coords, data.size[1], data.size[2], {
             name = targetLabel,
             heading = data.Heading,

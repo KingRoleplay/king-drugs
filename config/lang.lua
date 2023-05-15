@@ -21,7 +21,9 @@ Config.Languages = {
         HasEnoughSock = 'The dealer already has enough stock.',
         YouCanSellOnly = 'You can sell only %s %s to this dealer.',
         InvalidAmount = 'Invalid amount!',
-        NotEnough = 'Not enough %s!'
+        NotEnough = 'Not enough %s!',
+
+        GetInLaudry = 'Get in the laundry'
     },
 
     ['bg'] = {
@@ -46,6 +48,8 @@ Config.Languages = {
         HasEnoughSock = 'Дилърът вече има достатъчна наличност.',
         YouCanSellOnly = 'Можеш да продадеш само %s %s на този дилър.',
         InvalidAmount = 'Невалидно количество!',
-        NotEnough = 'Нямаш достатъчно %s!'
+        NotEnough = 'Нямаш достатъчно %s!',
+
+        GetInLaudry = 'Влез в пералнята'
     }
 };
