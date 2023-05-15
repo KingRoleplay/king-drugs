@@ -87,3 +87,31 @@ TextUI = function(action, message)
         CustomTextUI(action, message);
     end
 end
+
+---@param targetLabel string
+---@param icon string
+---@param name string
+---@param data table
+---@param onSelect function
+AddTargetInteraction = function(targetLabel, icon, name, data, onSelect)
+    local targetData = {
+        options = {
+            {
+                label = targetLabel,
+                icon = icon
+            }
+        }
+    };
+
+    -- Target Options Handler --
+    if Config.TargetType == 'ox_target' then
+        targetData.size = data.size;
+        targetData.debug = data.debug;
+        targetData.coords = data.coords;
+        targetData.rotation = data.heading;
+        targetData.options[1].name = name;
+        targetData.options[1].distance = 1.5;
+        targetData.options[1].onSelect = onSelect;
+    end
+    exports[Config.TargetType]:addBoxZone(targetData);
+end

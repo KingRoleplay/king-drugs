@@ -9,13 +9,39 @@ Config.TargetType = 'ox_target'; -- ox_target, qtarget, bt-target or qb-target
 Config.ContextType = 'ox'; -- ox (ox_lib context), nh-context, zf-context or qb-menu
 Config.Notifications = 'ox'; -- okok, ox, mythic or custom
 
+-- Money Laundry --
+
+Config.LaundryLocations = {
+    [1] = {
+        getIn = {
+            item = 'landryKey', -- Item name or false
+            interaction = {
+                type = 'target', -- target or control
+                coords = vec3(-396.7776, 6076.9458, 31.5001),
+                heading = 135.0,
+                debug = true, -- Only for target or ox zones
+                size = vec3(1.5, 1.5, 2), -- Only for target or ox zones
+                controlIdx = 38, -- Only for control
+                controlLabel = 'E' -- Only for control
+            }
+        },
+        blip = { -- Table or false
+            sprite = 365,
+            color = 5,
+            scale = 0.9,
+            label = 'Laundry',
+            coords = vec3(-396.7776, 6076.9458, 31.5001)
+        }
+    }
+};
+
 -- Dealer Configuration --
 
 Config.DealerLocations = {
     [1] = {
         -- The Coords and Heading can be global for the table or for each option different
         interaction = {
-            type = 'control', -- target or control
+            type = 'target', -- target or control
             coords = vec3(-117.7423, 6348.8779, 31.4904),
             heading = 50.7063,
             debug = false, -- Only for target or ox zones
