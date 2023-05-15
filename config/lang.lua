@@ -16,6 +16,10 @@ Config.Languages = {
         cocaine = 'Cocaine',
 
         NotEnoughMoney = 'You don\'t have enough money!',
+        NotEnoughStock = 'The dealer dosn\'t have enough stock!',
+        YouCanBuyOnly = 'You can buy only %s %s from this dealer.',
+        HasEnoughSock = 'The dealer already has enough stock.',
+        YouCanSellOnly = 'You can sell only %s %s to this dealer.',
         InvalidAmount = 'Invalid amount!',
         NotEnough = 'Not enough %s!'
     },
@@ -37,6 +41,10 @@ Config.Languages = {
         cocaine = 'Кокаин',
 
         NotEnoughMoney = 'Нямаш достатъчно пари!',
+        NotEnoughStock = 'Дилърът няма достатъчна наличност! Можеш да купиш само %s %s.',
+        YouCanBuyOnly = 'Можеш да купиш само %s %s от този дилър.',
+        HasEnoughSock = 'Дилърът вече има достатъчна наличност.',
+        YouCanSellOnly = 'Можеш да продадеш само %s %s на този дилър.',
         InvalidAmount = 'Невалидно количество!',
         NotEnough = 'Нямаш достатъчно %s!'
     }

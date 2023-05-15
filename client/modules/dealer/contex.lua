@@ -28,8 +28,9 @@ end
 ---@param drug string
 ---@param price number
 ---@param dealerPed number
----@return nil
-local DrugDealerAction = function(action, drug, price, dealerPed)
+---@param maxAmount number
+---@return number?
+local DrugDealerAction = function(action, drug, price, dealerPed, maxAmount)
     local header = string.format(Lang.AmountOfDrugsHeader, Lang[drug]);
     local context = string.format(Lang.AmountOfDrugs, Lang[drug]);
     local input = lib.inputDialog(header, {context});
@@ -44,8 +45,26 @@ local DrugDealerAction = function(action, drug, price, dealerPed)
         return;
     end
 
-    local finalPrice = price * amount;
+    if maxAmount ~= 'infinite' then
+        if amount > maxAmount then
+            local text = Lang.NotEnoughStock;
+            if action == 'sell' and maxAmount ~= 'infinite' then
+                if maxAmount <= 0 then
+                    text = Lang.HasEnoughSock;
+                elseif maxAmount > 0 then
+                    text = string.format(Lang.YouCanSellOnly, maxAmount, Lang[drug]);
+                end
+            elseif action == 'buy' and maxAmount ~= 'infinite' then
+                if maxAmount > 0 then
+                    text = string.format(Lang.YouCanBuyOnly, maxAmount, Lang[drug]);
+                end
+            end
+            Notify(Lang.Dealer, text, 'error', 5000);
+            return;
+        end
+    end
 
+    local finalPrice = price * amount;
     if action == 'buy' then
         local moneyAmount = lib.callback.await('king-drugs:server:getMoneyAmount');
         if moneyAmount < finalPrice then
@@ -54,7 +73,7 @@ local DrugDealerAction = function(action, drug, price, dealerPed)
         end
         TriggerServerEvent('king-drugs:server:buyDrugs', drug, amount, finalPrice);
         PlayDealAnimation(dealerPed);
-        return;
+        return type(maxAmount) == 'number' and maxAmount - amount or nil;
     end
     local drugAmount = lib.callback.await('king-drugs:server:getItemAmount', false, drug);
     if drugAmount < amount then
@@ -64,6 +83,7 @@ local DrugDealerAction = function(action, drug, price, dealerPed)
     end
     TriggerServerEvent('king-drugs:server:sellDrugs', drug, amount, finalPrice);
     PlayDealAnimation(dealerPed);
+    return type(maxAmount) == 'number' and maxAmount - amount or nil;
 end
 
 ---@param data table
@@ -82,7 +102,10 @@ local FormateDealerMenu = function(data, ped)
                     title = string.format(Lang.ContextMenuDrugAndPrice, Lang[value.item], value.price),
                     icon = 'fas fa-cannabis',
                     onSelect = function()
-                        DrugDealerAction('buy', value.item, value.price, ped);
+                        local newAmount = DrugDealerAction('buy', value.item, value.price, ped, value.amount);
+                        if newAmount ~= nil and value.amount ~= 'infinite' then
+                            value.amount = newAmount;
+                        end
                     end
                 };
             end
@@ -100,7 +123,10 @@ local FormateDealerMenu = function(data, ped)
                     title = string.format(Lang.ContextMenuDrugAndPrice, Lang[value.item], value.price),
                     icon = 'fas fa-cannabis',
                     onSelect = function()
-                        DrugDealerAction('sell', value.item, value.price, ped);
+                        local newAmount = DrugDealerAction('sell', value.item, value.price, ped, value.amount);
+                        if newAmount ~= nil and value.amount ~= 'infinite' then
+                            value.amount = newAmount;
+                        end
                     end
                 };
             end

@@ -22,17 +22,17 @@ Config.DealerLocations = {
         },
         prices = {
             --TODO Add maximum amount of drugs to buy or sell
-            buy = {
-                [1] = { item ='heroin', price = 8 },
-                [2] = { item = 'marijuana', price = 15 },
-                [3] = { item = 'meth', price = 35 },
-                [4] = { item = 'cocaine', price = 60 }
+            buy = { -- amount = 'infinite' --> infinite amount
+                [1] = { item ='heroin', price = 8, amount = 7 }, -- Add amount if you want to have a limit for buying
+                [2] = { item = 'marijuana', price = 15, amount = 12 },
+                [3] = { item = 'meth', price = 35, amount = 5 },
+                [4] = { item = 'cocaine', price = 60, amount = 2 }
             },
-            sell = {
-                [1] = { item = 'heroin', price = 5 },
-                [2] = { item = 'marijuana', price = 10 },
-                [3] = { item = 'meth', price = 25 },
-                [4] = { item = 'cocaine', price = 50 }
+            sell = { -- amount = 'infinite' --> infinite amount
+                [1] = { item = 'heroin', price = 5, amount = 'infinite' }, -- Add amount if you want to have a maximum amount to sell
+                [2] = { item = 'marijuana', price = 10, amount = 4 },
+                [3] = { item = 'meth', price = 25, amount = 10 },
+                [4] = { item = 'cocaine', price = 50, amount = 15 }
             }
         },
         ped = { -- Table or false
