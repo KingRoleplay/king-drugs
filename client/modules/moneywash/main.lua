@@ -11,6 +11,9 @@ CreateThread(function()
             }, function()
                 
             end, function()
+                if not value.getIn.item then
+                    return true;
+                end
                 return lib.callback.await('king-drugs:server:haveLaundryItem', false, value.getIn.item);
             end)
         end
