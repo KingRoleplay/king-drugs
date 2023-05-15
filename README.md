@@ -1,11 +1,14 @@
-ox_lib - https://github.com/overextended/ox_lib
-bt-polyzone - https://github.com/brentN5/bt-polyzone
+! **This Resource is not yet ready for use** !
 
-ox_target - https://github.com/overextended/ox_target
-qtarget - https://github.com/overextended/qtarget
-bt-target - https://github.com/brentN5/bt-target
-qb-target - https://github.com/qbcore-framework/qb-target
+FiveM drugs system inspired by esx_illegal (by DopeMan)
+Features:
+- Advanced Drug dealer system
+- Advanced Moeny Layndry system
+- Drug fields and locations for collecting
+- Drug processing on special locations
 
-nh-context - https://github.com/whooith/nh-context
-zf-context - https://github.com/zf-labo/zf_context
-qb-menu - https://github.com/qbcore-framework/qb-menu
+Dependencies:
+- ox_lib
+- ox_target
+
+! At the moment we support only ox_target but in the close future we are going to support ox_target, qtarget, qb-target and bt-target. About the zones we currently support ox_lib but when we finish the resource there will be an update which will add support for bt-polyzone and distance checking. At the moment we support only the ox_lib context/input dialong menu but we are planning to add qb-menu&qb-input, nh-context&nh-keyboard, zf-context&zf-dialog.
