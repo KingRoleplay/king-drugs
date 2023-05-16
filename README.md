@@ -9,7 +9,7 @@ Features:
 
 Support:
 - ox_lib zones, context, input
-- ox_target and qtarget for targetting
+- ox_target, qtarget and qb-target for targetting
 
 Dependencies:
 - ox_lib
