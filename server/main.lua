@@ -60,7 +60,7 @@ end
 FMFunctions.GetPlayersItem = function(playerId, item)
     local xPlayer = FMFunctions.GetPlayerFromId(playerId);
     if Config.Framework == 'qbcore' then
-        return xPlayer?.PlayerData.items[item];
+        return xPlayer?.Functions.GetItemByName(item);
     elseif Config.Framework == 'esx' then
         return xPlayer?.getInventoryItem(item);
     end
