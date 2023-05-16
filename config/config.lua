@@ -101,6 +101,7 @@ Config.Plants = {
         },
         locations = {
             {
+                plantsAmount = 10,
                 coords = vec3(10.7041, 6859.7734, 12.8821),
                 heading = 99.8704,
                 debug = true,
