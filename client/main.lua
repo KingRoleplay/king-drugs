@@ -1,15 +1,47 @@
 ---@param data table
+---@return vector3 coords
+---@return number sprite
+---@return number scale
+---@return number color
+---@return string label
+local FormateBlipSettings = function(data)
+    local coords, sprite = data.coords, data.sprite;
+    local scale, color, label = data.scale, data.color, data.label;
+    if data.blip and not coords then
+        coords = data.blip.coords;
+    end
+    if data.blip and not sprite then
+        sprite = data.blip.sprite;
+    end
+    if data.blip and not scale then
+        scale = data.blip.scale;
+    end
+    if data.blip and not color then
+        color = data.blip.color;
+    end
+    if data.blip and not label then
+        label = data.blip.label;
+    end
+    coords = coords or vector3(0.0, 0.0, 0.0);
+    sprite = sprite or 1;
+    scale = scale or 1.0;
+    color = color or 0;
+    label = label or 'Blip';
+    return coords, sprite, scale, color, label;
+end
+
+---@param data table
 ---@return number
 AddBlip = function(data)
-    local coords = data.blip.coords or data.coords;
+    local coords, sprite, scale, color, label = FormateBlipSettings(data);
     local blip = AddBlipForCoord(coords.x, coords.y, coords.z);
-    SetBlipSprite(blip, data.blip.sprite);
+    SetBlipSprite(blip, sprite);
     SetBlipDisplay(blip, 4);
-    SetBlipScale(blip, data.blip.scale);
-    SetBlipColour(blip, data.blip.color);
+    SetBlipScale(blip, scale);
+    SetBlipColour(blip, color);
     SetBlipAsShortRange(blip, true);
     BeginTextCommandSetBlipName('STRING');
-    AddTextComponentSubstringKeyboardDisplay(data.blip.label);
+    AddTextComponentSubstringKeyboardDisplay(label);
     EndTextCommandSetBlipName(blip);
     return blip;
 end

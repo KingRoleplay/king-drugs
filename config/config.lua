@@ -2,11 +2,11 @@ Config = Config or {};
 
 -- Main Configuration --
 
-Config.Framework = 'qb-core'; -- qbcore or esx (ox_core soon)
+Config.Framework = 'esx'; -- qbcore or esx (ox_core soon)
 Config.Language = 'en'; -- en or bg
 Config.ZoneType = 'ox'; -- ox (ox_lib zones), poly (bt-polyzone) or distance (fivem)
 Config.ControlInteraction = 'ox'; -- ox, okokTextUI, customTextUI, 3DText
-Config.TargetType = 'qb-target'; -- ox_target, qtarget, bt-target or qb-target
+Config.TargetType = 'ox_target'; -- ox_target, qtarget, bt-target or qb-target
 Config.ContextType = 'ox'; -- ox (ox_lib context), nh-context, zf-context or qb-menu
 Config.Notifications = 'ox'; -- okok, ox, mythic or custom
 
@@ -15,7 +15,7 @@ Config.Notifications = 'ox'; -- okok, ox, mythic or custom
 Config.LaundryLocations = {
     [1] = {
         getIn = {
-            item = false, -- Item name or false
+            item = 'cash', -- Item name or false
             interaction = {
                 type = 'target', -- target or control
                 coords = vec3(-396.7776, 6076.9458, 31.5001),
@@ -79,6 +79,37 @@ Config.DealerLocations = {
             scale = 0.8,
             label = 'Dealer',
             coords = vec3(-117.7423, 6348.8779, 31.4904)
+        }
+    }
+};
+
+-- Plants Configuration --
+
+Config.Plants = {
+    ['heroin'] = {
+        plantItem = 'iron',
+        plantProp = 'prop_cs_plant_01',
+        animation = {
+            dict = '',
+            anim = ''
+        },
+        blipSettings = {
+            sprite = 496,
+            color = 56,
+            scale = 0.8,
+            label = 'Heroin Plant'
+        },
+        locations = {
+            {
+                coords = vec3(10.7041, 6859.7734, 12.8821),
+                heading = 99.8704,
+                debug = true,
+                radius = 30.0,
+                blip = true,
+                interactionType = 'target', -- target or control
+                controlIdx = 38, -- Only for control
+                controlLabel = 'E' -- Only for control
+            }
         }
     }
 };
