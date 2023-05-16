@@ -26,8 +26,8 @@ Config.LaundryLocations = {
                 controlLabel = 'E' -- Only for control
             },
             goToCoords = {
-                coords = vec3(-575.53, -1623.37, 33.01),
-                heading = 130.0
+                coords = vec3(1137.99, -3198.72, -39.67),
+                heading = 130.0,
             }
         },
         blip = { -- Table or false

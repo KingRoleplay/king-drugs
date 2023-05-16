@@ -1,18 +1,5 @@
 local Lang = Config.Languages[Config.Language];
 
----@param dict string
-local ReqAnimDict = function(dict)
-    local state = GetResourceState('ox_lib');
-    if state ~= 'missing' and state ~= 'stopped' then
-        lib.requestAnimDict(dict);
-    else
-        RequestAnimDict(dict);
-        while not HasAnimDictLoaded(dict) do
-            Wait(10);
-        end
-    end
-end
-
 ---@param dealerPed number
 local PlayDealAnimation = function(dealerPed)
     ReqAnimDict('mp_common');

@@ -1,3 +1,17 @@
+---@param dict string
+ReqAnimDict = function(dict)
+    local state = GetResourceState('ox_lib');
+    if state ~= 'missing' and state ~= 'stopped' then
+        lib.requestAnimDict(dict);
+    else
+        RequestAnimDict(dict);
+        while not HasAnimDictLoaded(dict) do
+            Wait(10);
+        end
+    end
+end
+
+
 ---@param data table
 ---@return vector3 coords
 ---@return number sprite
