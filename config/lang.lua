@@ -23,7 +23,8 @@ Config.Languages = {
         InvalidAmount = 'Invalid amount!',
         NotEnough = 'Not enough %s!',
 
-        GetInLaudry = 'Get in the laundry'
+        GetInLaudry = 'Get in the laundry',
+        WashMoney = 'Wash your money'
     },
 
     ['bg'] = {
@@ -50,6 +51,7 @@ Config.Languages = {
         InvalidAmount = 'Невалидно количество!',
         NotEnough = 'Нямаш достатъчно %s!',
 
-        GetInLaudry = 'Влез в пералнята'
+        GetInLaudry = 'Влез в пералнята',
+        WashMoney = 'Изперете свойте пари'
     }
 };

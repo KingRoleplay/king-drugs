@@ -24,6 +24,16 @@ CreateThread(function()
                 end
                 return lib.callback.await('king-drugs:server:haveLaundryItem', false, value.getIn.item);
             end)
+            for i, v in pairs(Config.LaundryLocations) do
+                if v.getIn.Washing.type == 'target' then
+                    AddTargetInteraction(Lang.WashMoney, 'fas fa-door-open', 'king_drugs_money_laundry_'..i, {
+                        size = v.getIn.Washing.size,
+                        debug = v.getIn.Washing.debug,
+                        coords = v.getIn.Washing.coords,
+                        heading = v.getIn.Washing.heading
+                    })
+                end
+            end
         end
         if value.blip then value.blip.id = AddBlip(value); end
     end
