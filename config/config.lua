@@ -26,7 +26,7 @@ Config.LaundryLocations = {
                 controlLabel = 'E', -- Only for control
                 goToCoords = {
                     coords = vec3(1137.99, -3198.72, -39.67),
-                    heading = 130.0,
+                    heading = 0.0,
                 }
             },
             Washing = {

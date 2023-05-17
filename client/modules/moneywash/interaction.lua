@@ -16,12 +16,13 @@ end
 ---@param heading number
 local TeleportLaudry = function(coords, heading)
     ReqAnimDict('anim@heists@keycard@');
-    local ped = cache?.ped or PlayerPedId();
+    local ped = cache?.ped or PlayerId();
     TaskPlayAnim(ped, 'anim@heists@keycard@', 'exit', 8.0, 1.0, -1, 48, 0, false, false, false);
     Wait(500);
     DoScreenFadeOut(500);
     Wait(500);
-    StartPlayerTeleport(ped, coords.x, coords.y, coords.z, heading, false, true, true);
+    local pId = cache?.playerId or PlayerId();
+    StartPlayerTeleport(pId, coords.x, coords.y, coords.z, heading, false, true, true);
     Wait(500);
     DoScreenFadeIn(500);
 end
@@ -36,8 +37,8 @@ AddLaudryEnter_ExitTarget = function(index, value)
         coords = value.getIn.interaction.goToCoords.coords,
         heading = value.getIn.interaction.goToCoords.heading
     }, function()
-        local coords = value.getIn.coords;
-        TeleportLaudry(coords, value.getIn.heading);
+        local coords = value.getIn.interaction.coords;
+        TeleportLaudry(coords, value.getIn.interaction.heading);
     end);
     -- In --
     AddTargetInteraction(Lang.GetInLaudry, 'fas fa-door-open', 'king_drugs_money_laundry_'..index, {
@@ -46,8 +47,8 @@ AddLaudryEnter_ExitTarget = function(index, value)
         coords = value.getIn.interaction.coords,
         heading = value.getIn.interaction.heading
     }, function()
-        local coords = value.getIn.goToCoords.coords;
-        TeleportLaudry(coords, value.getIn.goToCoords.heading);
+        local coords = value.getIn.interaction.goToCoords.coords;
+        TeleportLaudry(coords, value.getIn.interaction.goToCoords.heading);
     end, function()
         if not value.getIn.item then
             return true;
