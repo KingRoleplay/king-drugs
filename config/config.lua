@@ -23,11 +23,11 @@ Config.LaundryLocations = {
                 debug = false, -- Only for target or ox zones
                 size = vec3(1.5, 1.5, 2), -- Only for target or ox zones
                 controlIdx = 38, -- Only for control
-                controlLabel = 'E' -- Only for control
-            },
-            goToCoords = {
-                coords = vec3(1137.99, -3198.72, -39.67),
-                heading = 130.0,
+                controlLabel = 'E', -- Only for control
+                goToCoords = {
+                    coords = vec3(1137.99, -3198.72, -39.67),
+                    heading = 130.0,
+                }
             },
             Washing = {
                 type = 'target',
