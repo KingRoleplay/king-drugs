@@ -2,7 +2,7 @@ Config.Languages = {
     ['en'] = {
         Dealer = 'Dealer',
 
-        DealerInteract = 'Talk with the dealer',
+        DealerInteract = 'Talk dealer ',
         DealerContextHeader = 'Drug Dealer',
         DealerBuyContextHeader = 'Buy Drugs',
         DealerSellContextHeader = 'Sell Drugs',
@@ -23,16 +23,16 @@ Config.Languages = {
         InvalidAmount = 'Invalid amount!',
         NotEnough = 'Not enough %s!',
 
-        GetInLaudry = 'Get in the laundry',
-        GetOutLaudry = 'Get out of the laundry',
+        GetInLaudry = 'Get in the laundry ',
+        GetOutLaudry = 'Get out of the laundry ',
         WashMoney = 'Wash your money',
-        InteractMoneyWash = 'Laundry ' 
+        InteractMoneyWash = 'Laundry '
     },
 
     ['bg'] = {
         Dealer = 'Дилър',
 
-        DealerInteract = 'Говори с дилъра',
+        DealerInteract = 'Говори дилър ',
         DealerContextHeader = 'Дилър на Наркотици',
         DealerBuyContextHeader = 'Купи наркотици',
         DealerSellContextHeader = 'Продай наркотици',
@@ -53,9 +53,9 @@ Config.Languages = {
         InvalidAmount = 'Невалидно количество!',
         NotEnough = 'Нямаш достатъчно %s!',
 
-        GetInLaudry = 'Влез в пералнята',
-        GetOutLaudry = 'Излез от пералнята',
+        GetInLaudry = 'Влез в пералнята ',
+        GetOutLaudry = 'Излез от пералнята ',
         WashMoney = 'Изперете свойте пари',
-        InteractMoneyWash = 'Пералня ' 
+        InteractMoneyWash = 'Пералня '
     }
 };

@@ -162,6 +162,7 @@ AddTargetInteraction = function(targetLabel, icon, name, data, onSelect, canInte
         end
         exports[Config.TargetType]:addBoxZone(targetData);
     elseif Config.TargetType == 'qtarget' or Config.TargetType == 'qb-target' then
+        targetData.distance = 1.5;
         targetData.options[1].action = onSelect;
         if canInteact then
             targetData.options[1].canInteract = canInteact;

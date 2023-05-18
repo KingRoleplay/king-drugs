@@ -31,25 +31,25 @@ Config.LaundryLocations = {
             }
         },
         moneyWash = {
-            {
+            [1] = {
                 coords = vec3(1122.3, -3193.35, -40.4),
                 heading = 0.0,
                 debug = false,
                 size = vec3(1.6, 1.4, 1)
             },
-            {
+            [2] = {
                 coords = vec3(1123.76, -3193.25, -40.4),
                 heading = 0.0,
                 debug = false,
                 size = vec3(1.6, 1.4, 1)
             },
-            {
+            [3] = {
                 coords = vec3(1125.43, -3193.25, -40.4),
                 heading = 0.0,
                 debug = false,
                 size = vec3(1.6, 1.4, 1)
             },
-            {
+            [4] = {
                 coords = vec3(1126.93, -3193.25, -40.4),
                 heading = 0.0,
                 debug = false,

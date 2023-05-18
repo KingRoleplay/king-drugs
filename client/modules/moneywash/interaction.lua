@@ -19,7 +19,11 @@ end
 ---@param value table
 AddLaudryEnter_ExitTarget = function(index, value)
     -- Out --
-    AddTargetInteraction(Lang.GetOutLaudry, 'fas fa-door-open', 'king_drugs_money_laundry_'..index, {
+    local label = Lang.GetOutLaudry..index;
+    if Config.TargetType == 'ox_target' then
+        label = Lang.GetOutLaudry;
+    end
+    AddTargetInteraction(label, 'fas fa-door-open', 'king_drugs_money_exit_laundry_'..index, {
         size = value.getIn.interaction.size,
         debug = value.getIn.interaction.debug,
         coords = value.getIn.interaction.goToCoords.coords,
@@ -29,7 +33,11 @@ AddLaudryEnter_ExitTarget = function(index, value)
         TeleportLaudry(coords, value.getIn.interaction.heading);
     end);
     -- In --
-    AddTargetInteraction(Lang.GetInLaudry, 'fas fa-door-open', 'king_drugs_money_laundry_'..index, {
+    local label2 = Lang.GetInLaudry..index;
+    if Config.TargetType == 'ox_target' then
+        label2 = Lang.GetInLaudry;
+    end
+    AddTargetInteraction(label2, 'fas fa-door-open', 'king_drugs_money_enter_laundry_'..index, {
         size = value.getIn.interaction.size,
         debug = value.getIn.interaction.debug,
         coords = value.getIn.interaction.coords,

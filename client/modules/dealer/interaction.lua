@@ -27,12 +27,3 @@ AddDealerControl = function(intex, data)
         });
     end
 end
-
---[[
-    local ctrl = Config.ControlInteraction;
-    if ctrl == '3DText' then
-        
-    else
-        
-    end
-]]
