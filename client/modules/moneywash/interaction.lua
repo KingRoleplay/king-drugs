@@ -1,17 +1,5 @@
 local Lang = Config.Languages[Config.Language];
 
----@param index number
----@param value table
-local AddLaundryTarget = function(index, value)
-    
-end
-
----@param index number
----@param value table
-local AddLaundryControl = function(index, value)
-    
-end
-
 ---@param coords vector3
 ---@param heading number
 local TeleportLaudry = function(coords, heading)
@@ -55,4 +43,20 @@ AddLaudryEnter_ExitTarget = function(index, value)
         end
         return lib.callback.await('king-drugs:server:haveLaundryItem', false, value.getIn.item);
     end);
+end
+
+
+---@param lIdx number
+---@param lData table
+---@param mIdx number
+---@param mData table
+AddLaundryLocation = function(lIdx, lData, mIdx, mData)
+    AddTargetInteraction(Lang.InteractMoneyWash..lIdx..'.'..mIdx, 'fas fa-door-open', 'king_drugs_moneyWash_'..lIdx..'_'..mIdx, {
+        size = mData.size,
+        debug = mData.debug,
+        coords = mData.coords,
+        heading = mData.heading
+    }, function()
+        print("бачка майна")
+    end)
 end

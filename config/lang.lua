@@ -25,7 +25,8 @@ Config.Languages = {
 
         GetInLaudry = 'Get in the laundry',
         GetOutLaudry = 'Get out of the laundry',
-        WashMoney = 'Wash your money'
+        WashMoney = 'Wash your money',
+        InteractMoneyWash = 'Laundry ' 
     },
 
     ['bg'] = {
@@ -54,6 +55,7 @@ Config.Languages = {
 
         GetInLaudry = 'Влез в пералнята',
         GetOutLaudry = 'Излез от пералнята',
-        WashMoney = 'Изперете свойте пари'
+        WashMoney = 'Изперете свойте пари',
+        InteractMoneyWash = 'Пералня ' 
     }
 };
