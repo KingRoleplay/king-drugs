@@ -47,10 +47,9 @@ end
 
 
 ---@param lIdx number
----@param lData table
 ---@param mIdx number
 ---@param mData table
-AddLaundryLocation = function(lIdx, lData, mIdx, mData)
+AddLaundryLocation = function(lIdx, mIdx, mData)
     AddTargetInteraction(Lang.InteractMoneyWash..lIdx..'.'..mIdx, 'fas fa-door-open', 'king_drugs_moneyWash_'..lIdx..'_'..mIdx, {
         size = mData.size,
         debug = mData.debug,
