@@ -1,5 +1,6 @@
 Config = Config or {};
 
+--TODO Test if all configartion work with multiple locations
 -- Main Configuration --
 
 Config.Framework = 'qbcore'; -- qbcore or esx (ox_core soon)
