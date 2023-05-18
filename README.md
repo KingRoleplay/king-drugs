@@ -3,7 +3,7 @@
 FiveM drugs system inspired by esx_illegal (by DopeMan)
 Features:
 - Advanced Drug dealer system
-- Advanced Moeny Layndry system
+- Advanced Moeny Laundry system
 - Drug fields and locations for collecting
 - Drug processing on special locations
 
