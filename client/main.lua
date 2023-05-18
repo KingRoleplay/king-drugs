@@ -168,10 +168,10 @@ AddTargetInteraction = function(targetLabel, icon, name, data, onSelect, canInte
         end
         exports[Config.TargetType]:AddBoxZone(targetLabel, data.coords, data.size[1], data.size[2], {
             name = targetLabel,
-            heading = data.Heading,
+            heading = data.heading,
             debugPoly = data.debug,
-            minZ = data.coords.z - 2,
-            maxZ = data.coords.z + 2
+            minZ = data.coords.z - data.size[3],
+            maxZ = data.coords.z + data.size[3]
         }, targetData)
     end
 end

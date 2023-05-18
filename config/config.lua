@@ -19,7 +19,7 @@ Config.LaundryLocations = {
             interaction = {
                 type = 'target', -- target or control
                 coords = vec3(-396.7776, 6076.9458, 31.5001),
-                heading = 135.0,
+                heading = 320.0,
                 debug = false, -- Only for target or ox zones
                 size = vec3(1.5, 1.5, 2), -- Only for target or ox zones
                 controlIdx = 38, -- Only for control
@@ -28,15 +28,6 @@ Config.LaundryLocations = {
                     coords = vec3(1137.99, -3198.72, -39.67),
                     heading = 0.0,
                 }
-            },
-            Washing = {
-                type = 'target',
-                coords = vec3(1124.90, -3193.35, -40.43),
-                heading = 135.0,
-                debug = true,
-                size = vec3(1.5, 6.5, 1),
-                controlIdx = 38,
-                controlLabel = 'E'
             }
         },
         blip = { -- Table or false

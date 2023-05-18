@@ -24,6 +24,7 @@ Config.Languages = {
         NotEnough = 'Not enough %s!',
 
         GetInLaudry = 'Get in the laundry',
+        GetOutLaudry = 'Get out of the laundry',
         WashMoney = 'Wash your money'
     },
 
@@ -52,6 +53,7 @@ Config.Languages = {
         NotEnough = 'Нямаш достатъчно %s!',
 
         GetInLaudry = 'Влез в пералнята',
+        GetOutLaudry = 'Излез от пералнята',
         WashMoney = 'Изперете свойте пари'
     }
 };

@@ -31,7 +31,7 @@ end
 ---@param value table
 AddLaudryEnter_ExitTarget = function(index, value)
     -- Out --
-    AddTargetInteraction(Lang.GetInLaudry, 'fas fa-door-open', 'king_drugs_money_laundry_'..index, {
+    AddTargetInteraction(Lang.GetOutLaudry, 'fas fa-door-open', 'king_drugs_money_laundry_'..index, {
         size = value.getIn.interaction.size,
         debug = value.getIn.interaction.debug,
         coords = value.getIn.interaction.goToCoords.coords,
