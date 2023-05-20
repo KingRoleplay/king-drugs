@@ -137,8 +137,8 @@ end
 ---@param name string
 ---@param data table
 ---@param onSelect function
----@param canInteact function?
-AddTargetInteraction = function(targetLabel, icon, name, data, onSelect, canInteact)
+---@param canInteract function?
+AddTargetInteraction = function(targetLabel, icon, name, data, onSelect, canInteract)
     local targetData = {
         options = {
             {
@@ -157,22 +157,36 @@ AddTargetInteraction = function(targetLabel, icon, name, data, onSelect, canInte
         targetData.options[1].name = name;
         targetData.options[1].distance = 1.5;
         targetData.options[1].onSelect = onSelect;
-        if canInteact then
-            targetData.options[1].canInteract = canInteact;
+        if canInteract then
+            targetData.options[1].canInteract = canInteract;
         end
         exports[Config.TargetType]:addBoxZone(targetData);
-    elseif Config.TargetType == 'qtarget' or Config.TargetType == 'qb-target' then
+    elseif Config.TargetType == 'qtarget' or Config.TargetType == 'qb-target' or Config.TargetType == 'bt-target' then
         targetData.distance = 1.5;
-        targetData.options[1].action = onSelect;
-        if canInteact then
-            targetData.options[1].canInteract = canInteact;
+        if Config.TargetType == 'qtarget' or Config.TargetType == 'qb-target' then
+            targetData.options[1].action = onSelect;
+            if canInteract then
+                targetData.options[1].canInteract = canInteract;
+            end
+        elseif Config.TargetType == 'bt-target' then
+            targetData.options[1].event = 'king-drugs:client:'..name;
+            ---@return nil
+            AddEventHandler('king-drugs:client:'..name, function()
+                if canInteract then
+                    if canInteract() then
+                        onSelect();
+                        return;
+                    end
+                end
+                onSelect();
+            end);
         end
-        exports[Config.TargetType]:AddBoxZone(targetLabel, data.coords, data.size[1], data.size[2], {
-            name = targetLabel,
+        exports[Config.TargetType]:AddBoxZone(name, data.coords, data.size[1], data.size[2], {
+            name = name,
             heading = data.heading,
             debugPoly = data.debug,
             minZ = data.coords.z - data.size[3],
             maxZ = data.coords.z + data.size[3]
-        }, targetData)
+        }, targetData);
     end
 end

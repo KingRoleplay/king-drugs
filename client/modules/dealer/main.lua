@@ -2,11 +2,7 @@ CreateThread(function()
     for index, value in pairs(Config.DealerLocations) do
         if value.interaction.type == 'target' then
             local Lang = Config.Languages[Config.Language];
-            local text = Lang.DealerInteract..index;
-            if Config.TargetType == 'ox_target' then
-                text = Lang.DealerInteract;
-            end
-            AddTargetInteraction(text, 'fas fa-cannabis', 'king_drugs_dealer_target_'..index, {
+            AddTargetInteraction(Lang.DealerInteract, 'fas fa-cannabis', 'king_drugs_dealer_target_'..index, {
                 size = value.interaction.size,
                 debug = value.interaction.debug,
                 coords = value.interaction.coords or value.coords,
