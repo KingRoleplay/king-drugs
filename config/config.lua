@@ -72,7 +72,7 @@ Config.DealerLocations = {
     [1] = {
         -- The Coords and Heading can be global for the table or for each option different
         interaction = {
-            type = 'target', -- target or control
+            type = 'control', -- target or control
             coords = vec3(-384.27, 6080.07, 31.44),
             heading = 305.0,
             debug = false, -- Only for target or ox zones

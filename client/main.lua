@@ -132,6 +132,42 @@ TextUI = function(action, message)
     end
 end
 
+---@param zoneData table
+---@param controlData table
+---@param action function
+---@param canInteract function?
+AddControlInteraction = function(zoneData, controlData, action, canInteract)
+    if Config.ZoneType == 'ox' then
+        lib.zones.box({
+            coords = zoneData.coords,
+            size = zoneData.size,
+            debug = zoneData.debug,
+            rotation = zoneData.heading,
+            inside = function()
+                if IsControlJustPressed(0, controlData.control) then
+                    if canInteract then
+                        if canInteract() then
+                            action();
+                            return;
+                        end
+                    end
+                    action();
+                end
+            end,
+            onEnter = function()
+                if Config.ControlInteraction ~= '3DText' then
+                    TextUI('show', '['..controlData.label..'] '..controlData.text);
+                end
+            end,
+            onExit = function()
+                if Config.ControlInteraction ~= '3DText' then
+                    TextUI('hide');
+                end
+            end,
+        });
+    end
+end
+
 ---@param targetLabel string
 ---@param icon string
 ---@param name string
