@@ -46,6 +46,44 @@ AddLaudryEnter_ExitTarget = function(index, value)
 end
 
 
+---@param index number
+---@param value table
+AddLaudryEnter_ExitControl = function(index, value)
+    -- Out --
+    AddControlInteraction({
+        size = value.getIn.interaction.size,
+        debug = value.getIn.interaction.debug,
+        coords = value.getIn.interaction.goToCoords.coords,
+        heading = value.getIn.interaction.goToCoords.heading
+    }, {
+        control = value.getIn.interaction.controlIdx,
+        label = value.getIn.interaction.controlLabel,
+        text = Lang.GetOutLaudry
+    }, function()
+        local coords = value.getIn.interaction.coords;
+        TeleportLaudry(coords, value.getIn.interaction.heading);
+    end);
+    -- In --
+    AddControlInteraction({
+        size = value.getIn.interaction.size,
+        debug = value.getIn.interaction.debug,
+        coords = value.getIn.interaction.coords,
+        heading = value.getIn.interaction.heading
+    }, {
+        control = value.getIn.interaction.controlIdx,
+        label = value.getIn.interaction.controlLabel,
+        text = Lang.GetInLaudry
+    }, function()
+        local coords = value.getIn.interaction.goToCoords.coords;
+        TeleportLaudry(coords, value.getIn.interaction.goToCoords.heading);
+    end, function()
+        if not value.getIn.item then
+            return true;
+        end
+        return lib.callback.await('king-drugs:server:haveLaundryItem', false, value.getIn.item);
+    end);
+end
+
 ---@param lIdx number
 ---@param mIdx number
 ---@param mData table
