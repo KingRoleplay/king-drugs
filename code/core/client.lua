@@ -123,6 +123,9 @@ TextUI = function(action, message)
     local interaction = Config.ControlInteraction;
     if interaction == 'ox' then
         if action == 'show' then
+            if not message then
+                return;
+            end
             lib.showTextUI(message);
         elseif action == 'hide' then
             lib.hideTextUI();

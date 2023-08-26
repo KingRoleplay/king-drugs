@@ -1,28 +1,28 @@
-fx_version 'cerulean'
-game 'gta5'
-lua54 'yes'
+fx_version 'cerulean';
+game 'gta5';
+lua54 'yes';
 
-author 'GaDGeT#8987 & EmeraldCeat#6886 & AstrO#6741'
-description 'FiveM drugs system inspired by esx_illeagal (esx_drugs)'
-version '1.0.0'
+author 'GaDGeT#8987 & EmeraldCeat#6886 & AstrO#6741';
+description 'FiveM drugs system inspired by esx_illeagal (esx_drugs)';
+version '1.0.0';
 
-client_script {
-    'client/main.lua',
-    'client/modules/**/*.lua'
+client_scripts {
+    'code/core/client.lua',
+    'code/modules/**/client.lua'
 };
 
-server_script {
-    'server/main.lua',
-    'server/modules/**/*.lua'
+server_scripts {
+    'code/core/server.lua',
+    'code/modules/**/server.lua'
 };
 
-shared_script {
+shared_scripts {
     '@ox_lib/init.lua',
 
     'config/config.lua',
     'config/lang.lua'
 };
 
-dependency {
-    'ox_lib',
+dependencies {
+    'ox_lib'
 };
