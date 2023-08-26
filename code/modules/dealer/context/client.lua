@@ -53,7 +53,7 @@ local DrugDealerAction = function(action, drug, price, dealerPed, maxAmount)
 
     local finalPrice = price * amount;
     if action == 'buy' then
-        local moneyAmount = lib.callback.await('king-drugs:server:getMoneyAmount');
+        local moneyAmount = lib.callback.await('king-drugs:server:getMoneyAmount', false);
         if moneyAmount < finalPrice then
             Notify(Lang.Dealer, Lang.NotEnoughMoney, 'error', 5000);
             return;
@@ -75,8 +75,8 @@ end
 
 ---@param data table
 ---@param ped number
----@return false | table buyContextData
----@return false | table sellContextData
+---@return false | table? buyContextData
+---@return false | table? sellContextData
 local FormateDealerMenu = function(data, ped)
     local buyContextData = nil;
     if type(data.buy) ~= 'table' then
@@ -126,7 +126,7 @@ end
 ---@param data table
 OpenDealerMenu = function(dealerIndex, data)
     local buyContextData, sellContextData = FormateDealerMenu(data.prices, data.ped.id);
-    if Config.ContextType == 'ox' then
+    if Config.ContextType == 'ox' and buyContextData and sellContextData then
         lib.registerContext({
             id = 'king_drugs_dealer_menu_'..dealerIndex,
             title = Lang.DealerContextHeader,
