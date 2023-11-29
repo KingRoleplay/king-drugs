@@ -1,18 +1,8 @@
-Config = Config or {};
-
--- Main Configuration --
-
-Config.Framework = 'esx'; -- qbcore or esx (ox_core soon)
-Config.Language = 'en'; -- en or bg
-Config.ZoneType = 'ox'; -- ox (ox_lib zones), poly (bt-polyzone) or distance (fivem)
-Config.ControlInteraction = 'ox'; -- ox, okokTextUI, customTextUI, 3DText
-Config.TargetType = 'ox_target'; -- ox_target, qtarget, bt-target or qb-target
-Config.ContextType = 'ox'; -- ox (ox_lib context), nh-context, zf-context or qb-menu
-Config.Notifications = 'ox'; -- okok, ox, mythic or custom
+local settings = {};
 
 -- Money Laundry --
 
-Config.LaundryLocations = {
+settings.LaundryLocations = {
     [1] = {
         getIn = {
             item = false, -- Item name or false
@@ -68,7 +58,7 @@ Config.LaundryLocations = {
 
 -- Dealer Configuration --
 
-Config.DealerLocations = {
+settings.DealerLocations = {
     [1] = {
         -- The Coords and Heading can be global for the table or for each option different
         interaction = {
@@ -111,7 +101,7 @@ Config.DealerLocations = {
 
 -- Plants Configuration --
 
-Config.Plants = {
+settings.Plants = {
     ['heroin'] = {
         plantItem = 'iron',
         plantProp = 'prop_cs_plant_01',
@@ -147,19 +137,22 @@ Config.Plants = {
 ---@param msg string
 ---@param type string
 ---@param time number
-CustomNotifications = function(title, msg, type, time)
-    --* Example:
-    --* exports['king-library']:Notification(msg, type, time);
+Notification = function(title, msg, type, time)
+    lib.notify({ title = title, description = msg, type = type, duration = time });
 end
 
 ---@param action string
 ---@param message string?
-CustomTextUI = function(action, message)
+TextUI = function(action, message)
     if action == 'show' then
-        --* Example:
-        --* exports['king-library']:ShowTextUI(message, 'information');
+        lib.showTextUI(message);
     elseif action == 'hide' then
-        --* Example:
-        --* exports['king-library']:HideTextUI();
+        lib.hideTextUI();
     end
 end
+
+-- Lang --
+
+settings.lang = require '@king-drugs/settings/lang';
+
+return settings;

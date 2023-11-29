@@ -1,4 +1,4 @@
-Config.Languages = {
+local languages = {
     ['en'] = {
         Dealer = 'Dealer',
 
@@ -59,3 +59,5 @@ Config.Languages = {
         InteractMoneyWash = 'Пералня '
     }
 };
+
+return languages;
